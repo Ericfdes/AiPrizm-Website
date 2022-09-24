@@ -15,12 +15,16 @@ class Infocounter(models.Model):
         return self.projects
 
 
-class ServiceDes(models.Model):
+class ServiceDescription(models.Model):
+
 
     headDiscription=models.CharField( max_length=100)
     webdev=models.CharField( max_length=100)
     Mlearning=models.CharField( max_length=100)
     dataA=models.CharField( max_length=100)
+    appdev=models.CharField(max_length=100, default="none")
+    automation=models.CharField(max_length=100, default="none")
+
 
     def __str__(self):
         return self.headDiscription 

@@ -35,27 +35,33 @@
 		<div class="row justify-content-center">
 			<div class="col-lg-7 text-center">
 				<div class="section-title">
+					{% for service in service  %}
 					<span class="h6 text-color">Our Services</span>
-					<h2 class="mt-3 content-title ">We provide a wide range of creative services </h2>
+					<h2 class="mt-3 content-title ">{{service.headDiscription}} </h2>
+					{% endfor %}
 				</div>
 			</div>
 		</div>
 
 		<div class="row">
 			<div class="col-lg-4 col-md-6 col-sm-6">
+				{% for service in service  %}
 				<div class="service-item mb-5">
 					<i class="ti-desktop"></i>
 					<h4 class="mb-3">Web development.</h4>
-					<p>A digital agency isn't here to replace your internal team, we're here to partner</p>
+					<p>{{service.webdev}}</p>
 				</div>
+				{% endfor %}
 			</div>
 
 			<div class="col-lg-4 col-md-6 col-sm-6">
+				{% for service in service  %}
 				<div class="service-item mb-5">
 					<i class="ti-layers"></i>
-					<h4 class="mb-3">Interface Design.</h4>
-					<p>A digital agency isn't here to replace your internal team, we're here to partner</p>
+					<h4 class="mb-3">Machine Learning</h4>
+					<p>{{service.Mlearning}}</p>
 				</div>
+				{% endfor %}
 			</div>
 
 			<div class="col-lg-4 col-md-6 col-sm-6">
@@ -75,11 +81,13 @@
 			</div>
 
 			<div class="col-lg-4 col-md-6 col-sm-6">
+				{% for service in service  %}
 				<div class="service-item mb-5">
 					<i class="ti-android"></i>
 					<h4 class="mb-3">App development.</h4>
-					<p>A digital agency isn't here to replace your internal team, we're here to partner</p>
+					<p>{{service.appdev}}</p>
 				</div>
+				{% endfor %}
 			</div>
 
 			<div class="col-lg-4 col-md-6 col-sm-6">

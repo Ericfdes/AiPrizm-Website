@@ -1,12 +1,15 @@
-from multiprocessing import context
+
 from django.shortcuts import render
-from .models import Infocounter
+from .models import Infocounter, ServiceDescription
+
 
 
 def index(request):
     count=Infocounter.objects.all()
+    service=ServiceDescription.objects.all()
     context={
-        "count":count
+        "count":count,
+        "service": service
     }
     return render(request,'website/index.html', context)
 
@@ -17,7 +20,14 @@ def pricing(request):
     return render (request,'website/pricing.html')
 
 def service(request):
-    return render (request,'website/service.html')
+
+    service=ServiceDescription.objects.all()
+    context={
+       
+        "service": service
+    }
+    return render (request,'website/service.html',context)
+    
 
 def about(request):
     return render (request,'website/about.html')
@@ -25,8 +35,6 @@ def about(request):
 
 def project(request):
     return render (request,'website/project.html')
-
-
 
 
 # Create your views here.
