@@ -24,11 +24,24 @@ class ServiceDescription(models.Model):
     dataA=models.CharField( max_length=100)
     appdev=models.CharField(max_length=100, default="none")
     automation=models.CharField(max_length=100, default="none")
+    DigitalMarketing=models.CharField(max_length=100, default="none")
 
 
     def __str__(self):
         return self.headDiscription 
     
+class ContactInfo(models.Model):
+    email=models.EmailField(max_length=254)
+    Phone=models.CharField(max_length=100)
+    address=models.CharField( max_length=500)
+    facebook=models.URLField(max_length=200)
+    github=models.URLField(max_length=200)
+    twitter=models.URLField(max_length=200)
+
+
+
+    def __str__(self) :
+        return self.email
 
     
 # Create your models here.

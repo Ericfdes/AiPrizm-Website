@@ -1,20 +1,27 @@
 
 from django.shortcuts import render
-from .models import Infocounter, ServiceDescription
+from .models import Infocounter, ServiceDescription, ContactInfo
 
 
 
 def index(request):
     count=Infocounter.objects.all()
     service=ServiceDescription.objects.all()
+    contact=ContactInfo.objects.all()
     context={
         "count":count,
-        "service": service
+        "service": service,
+        "contact": contact
     }
     return render(request,'website/index.html', context)
 
 def contact(request):
-    return render (request,'website/contact.html')
+   
+    contact=ContactInfo.objects.all()
+    context={ 
+        "contact": contact
+    }
+    return render (request,'website/contact.html',context)
 
 def pricing(request):
     return render (request,'website/pricing.html')
