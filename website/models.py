@@ -1,4 +1,5 @@
 
+from unicodedata import name
 from django.db import models
 
 
@@ -30,13 +31,11 @@ class ServiceDescription(models.Model):
     def __str__(self):
         return self.headDiscription 
     
-class ContactInfo(models.Model):
+class Contact(models.Model):
     email=models.EmailField(max_length=254)
     Phone=models.CharField(max_length=100)
-    address=models.CharField( max_length=500)
-    facebook=models.URLField(max_length=200)
-    github=models.URLField(max_length=200)
-    twitter=models.URLField(max_length=200)
+    name=models.CharField(max_length=500)
+    message=models.CharField(max_length=5000,default="none")
 
 
 

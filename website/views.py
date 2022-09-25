@@ -1,13 +1,13 @@
 
 from django.shortcuts import render
-from .models import Infocounter, ServiceDescription, ContactInfo
+from .models import Infocounter, ServiceDescription, Contact
 
 
 
 def index(request):
     count=Infocounter.objects.all()
     service=ServiceDescription.objects.all()
-    contact=ContactInfo.objects.all()
+    contact=Contact.objects.all()
     context={
         "count":count,
         "service": service,
@@ -17,7 +17,7 @@ def index(request):
 
 def contact(request):
    
-    contact=ContactInfo.objects.all()
+    contact=Contact.objects.all()
     context={ 
         "contact": contact
     }
