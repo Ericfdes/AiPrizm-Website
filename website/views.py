@@ -20,25 +20,44 @@ def index(request):
 
 
 
-def contact(request):
+# def contact(request):
    
-    if request.method == 'POST':
+#     if request.method == 'POST':
         
-        name = request.POST['name']
-        email = request.POST['email']
-        subject = request.POST['subject']
-        message = request.POST['message']
+#         name = request.POST['name']
+#         email = request.POST['email']
+#         subject = request.POST['subject']
+#         message = request.POST['message']
 
-        contact = Contact(name=name, email=email, subject=subject, message=message)
-        contact.save()
-        return render (request,'website/contact.html')
-    else:    
-        return render(request, 'website/contact.html')
+#         contact = Contact(name=name, email=email, subject=subject, message=message)
+#         contact.save()
+#         return render (request,'website/contact.html')
+#     else:    
+#         return render(request, 'website/contact.html')
+
+def contact(request):
+	if request.method == 'POST':
+		form = ContactForm(request.POST)
+		if form.is_valid():
+			subject = "Website Inquiry" 
+			body = {
+			'name': form.cleaned_data['name'], 
+			'subject': form.cleaned_data['subject'], 
+			'email': form.cleaned_data['email'], 
+			'message':form.cleaned_data['message'], 
+			}
+			message = "\n".join(body.values())
+
+			try:
+				send_mail(subject, message, 'admin@example.com', ['admin@example.com']) 
+			except BadHeaderError:
+				return HttpResponse('Invalid header found.')
+			return render (request,"website/contact.html")
+      
+	form = ContactForm()
+	return render(request, "website/contact.html", {'form':form})
 
 
-
-def pricing(request):
-    return render (request,'website/pricing.html')
 
 def service(request):
 

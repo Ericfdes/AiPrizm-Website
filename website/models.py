@@ -17,8 +17,6 @@ class Infocounter(models.Model):
 
 
 class ServiceDescription(models.Model):
-
-
     headDiscription=models.CharField( max_length=100)
     webdev=models.CharField( max_length=100)
     Mlearning=models.CharField( max_length=100)
@@ -30,12 +28,15 @@ class ServiceDescription(models.Model):
 
     def __str__(self):
         return self.headDiscription 
+ 
     
 class Contact(models.Model):
     email=models.EmailField(max_length=254)
     subject=models.CharField(max_length=100)
     name=models.CharField(max_length=500)
-    message=models.CharField(max_length=5000,default="none")
+    message=models.CharField(max_length=5000,default="")
+
+
 
 
 

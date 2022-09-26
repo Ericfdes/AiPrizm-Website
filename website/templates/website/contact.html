@@ -32,33 +32,33 @@
 		<div class="row">
 			<div class="col-lg-6 col-md-12 col-sm-12">
 				
-				<form id="contact-form" class="contact__form" method="post" role=form action="/contact/">
+				<form id="contact-form" class="contact__form" method="post" role=form action="">
 					{% csrf_token %}
 					<h3 class="text-md mb-4">Contact Form</h3>
 					
-
+				
 					{{ contact_form.non_field_errors }}
 					<div class="form-group">
-						{{ contact_form.name.errors }}
-						{{ contact_form.name }}
+						{{form.name.errors }}
+						{{form.name }}
 
-						<input name="name" type="text" class="form-control" placeholder="Name" required>
+						{% comment %} <input name="name" type="text" class="form-control" placeholder="Name" required> {% endcomment %}
 					</div>
 					<div class="form-group">
-						{{ contact_form.email.errors }}
-						{{ contact_form.email }}
-						<input name="email" type="email" class="form-control" placeholder="Email" required>
+						{{form.email.errors }}
+						{{form.email }}
+						{% comment %} <input name="email" type="email" class="form-control" placeholder="Email" required> {% endcomment %}
 					</div>
 					<div class="form-group">
-						{{ contact_form.subject.errors }}
-						{{ contact_form.subject }}
-						<input name="subject" type="text" class="form-control" placeholder="subject" required>
+						{{form.subject.errors }}
+						{{form.subject }}
+						{% comment %} <input name="subject" type="text" class="form-control" placeholder="subject" required> {% endcomment %}
 					</div>
 					
 					<div class="form-group-2 mb-4">
-						{{ contact_form.message.errors }}
-						{{ contact_form.message }}
-						<textarea name="message" class="form-control" rows="4" placeholder="Message" required></textarea>
+						{{form.message.errors }}
+						{{form.message }}
+						{% comment %} <textarea name="message" class="form-control" rows="4" placeholder="Message" required></textarea> {% endcomment %}
 					</div>
 					<button class="btn btn-main" name="submit" type="submit">Send Message</button>
 				</form>
