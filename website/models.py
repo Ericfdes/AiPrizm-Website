@@ -33,7 +33,7 @@ class ServiceDescription(models.Model):
     
 class Contact(models.Model):
     email=models.EmailField(max_length=254)
-    Phone=models.CharField(max_length=100)
+    subject=models.CharField(max_length=100)
     name=models.CharField(max_length=500)
     message=models.CharField(max_length=5000,default="none")
 
@@ -41,6 +41,9 @@ class Contact(models.Model):
 
     def __str__(self) :
         return self.email
+
+
+
 
     
 # Create your models here.

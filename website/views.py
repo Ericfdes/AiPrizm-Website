@@ -23,28 +23,17 @@ def index(request):
 def contact(request):
    
     if request.method == 'POST':
-        form = ContactForm(request.POST)
-        if form.is_valid():
-            subject = "Website Inquiry"
-            print(form.cleaned_data)
-            body = {
-                'name': form.cleaned_data['name'],
-                'subject': form.cleaned_data['subject'],
-                'email': form.cleaned_data['email'],
-                'message': form.cleaned_data['message'],
-            }
-            message = "\n".join(body.values())
+        
+        name = request.POST['name']
+        email = request.POST['email']
+        subject = request.POST['subject']
+        message = request.POST['message']
 
-            try:
-                send_mail(subject, message, 'admin@example.com', ['admin@example.com'])
-            except BadHeaderError:
-                return HttpResponse('Invalid header found.')
-            # return HttpResponse("Your query has been sent.", status=200)
-            return HttpResponse("Message sent successfully", status=200)
-    
-    
-    form = ContactForm()
-    return render (request,'website/contact.html',{"form":form})
+        contact = Contact(name=name, email=email, subject=subject, message=message)
+        contact.save()
+        return render (request,'website/contact.html')
+    else:    
+        return render(request, 'website/contact.html')
 
 
 
