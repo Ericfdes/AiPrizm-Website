@@ -1,6 +1,6 @@
 
 from django.shortcuts import render
-from .models import Infocounter, ServiceDescription, Contact
+from .models import Infocounter, ServiceDescription, Contact, Team
 from django.core.mail import send_mail, BadHeaderError
 from django.http import HttpResponse, Http404
 from .forms import ContactForm
@@ -62,15 +62,24 @@ def contact(request):
 def service(request):
 
     service=ServiceDescription.objects.all()
+    team=Team.objects.all().order_by("order")
     context={
        
-        "service": service
+        "service": service,
+		 "team": team
     }
     return render (request,'website/service.html',context)
     
 
 def about(request):
-    return render (request,'website/about.html')
+    
+    team=Team.objects.all().order_by("order")
+    context={
+       
+        
+		 "team": team
+    }
+    return render (request,'website/about.html',context)
 
 
 def project(request):

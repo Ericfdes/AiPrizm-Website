@@ -1,5 +1,4 @@
 
-from unicodedata import name
 from django.db import models
 
 
@@ -17,13 +16,13 @@ class Infocounter(models.Model):
 
 
 class ServiceDescription(models.Model):
-    headDiscription=models.CharField( max_length=100)
-    webdev=models.CharField( max_length=100)
-    Mlearning=models.CharField( max_length=100)
-    dataA=models.CharField( max_length=100)
-    appdev=models.CharField(max_length=100, default="none")
-    automation=models.CharField(max_length=100, default="none")
-    DigitalMarketing=models.CharField(max_length=100, default="none")
+    headDiscription=models.TextField( max_length=500)
+    webdev=models.TextField( max_length=500)
+    Mlearning=models.TextField( max_length=500)
+    dataA=models.TextField( max_length=500)
+    appdev=models.TextField(max_length=500, default="none")
+    automation=models.TextField(max_length=500, default="none")
+    DigitalMarketing=models.TextField(max_length=500, default="none")
 
 
     def __str__(self):
@@ -34,16 +33,28 @@ class Contact(models.Model):
     email=models.EmailField(max_length=254)
     subject=models.CharField(max_length=100)
     name=models.CharField(max_length=500)
-    message=models.CharField(max_length=5000,default="")
-
-
+    message=models.TextField(max_length=5000,default="")
 
 
 
     def __str__(self) :
         return self.email
 
+class Team(models.Model):
+    name = models.CharField(max_length=100)
+    designation = models.CharField(max_length=100)
+    short_desc = models.TextField(max_length=500)
+    photo = models.ImageField(upload_to="website/team_pictures/", null=True, blank=True)
+    order = models.IntegerField(null=True, blank=True)
 
+    # social media
+    twitter = models.CharField(max_length=200, default="#")
+    facebook = models.CharField(max_length=200, default="#")
+    instagram = models.CharField(max_length=200, default="#")
+    linkedin = models.CharField(max_length=200, default="#")
+
+    def __str__(self):
+        return self.name
 
 
     
