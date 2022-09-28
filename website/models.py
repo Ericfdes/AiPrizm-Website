@@ -4,15 +4,20 @@ from django.db import models
 
 
 
-class Infocounter(models.Model):
-    projects=models.CharField(max_length=50,default="21")
+class Info_counter(models.Model):
+
+    counter=models.CharField(max_length=50,default="counter")
     workers=models.IntegerField(null=True)
     support=models.IntegerField(null=True)
     clients=models.IntegerField(null=True)
+    project=models.IntegerField(null=True)
 
 
     def __str__(self):
-        return self.projects
+        return self.counter
+
+
+
 
 
 class ServiceDescription(models.Model):

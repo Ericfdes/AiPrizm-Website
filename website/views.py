@@ -1,6 +1,6 @@
 
 from django.shortcuts import render
-from .models import Infocounter, ServiceDescription, Contact, Team
+from .models import Info_counter, ServiceDescription, Contact, Team
 from django.core.mail import send_mail, BadHeaderError
 from django.http import HttpResponse, Http404
 from .forms import ContactForm
@@ -8,7 +8,7 @@ from .forms import ContactForm
 
 
 def index(request):
-    count=Infocounter.objects.all()
+    count=Info_counter.objects.all()
     service=ServiceDescription.objects.all()
     contact=Contact.objects.all()
     context={
