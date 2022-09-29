@@ -34,8 +34,8 @@
 
 
 
-  {% block vendor_css %}
-  <!-- Vendor CSS Files -->
+  {% block plugins_css %}
+  <!-- plugins CSS Files -->
   
   <!-- bootstrap.min css -->
   <link rel="stylesheet" href="{% static 'website/plugins/bootstrap/bootstrap.min.css' %}">
@@ -47,10 +47,10 @@
   <link rel="stylesheet" href="{% static 'website/plugins/slick/slick.css' %}">
   <link rel="stylesheet" href="{% static 'website/plugins/slick/slick-theme.css' %}">
 
-  {% endblock vendor_css %}
+  {% endblock plugins_css %}
 
-{% block vendor_js %}
-<!-- Vendor JS Files -->
+{% block plugins_js %}
+<!-- plugins JS Files -->
 <script src="{% static 'website/plugins/purecounter/purecounter_vanilla.js' %}"></script>
 <script src="{% static 'website/plugins/aos/aos.js' %}"></script>
 <script src="{% static 'website/plugins/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
@@ -58,7 +58,7 @@
 <script src="{% static 'website/plugins/isotope-layout/isotope.pkgd.min.js' %}"></script>
 <script src="{% static 'website/plugins/swiper/swiper-bundle.min.js' %}"></script>
 <script src="{% static 'website/plugins/php-email-form/validate.js' %}"></script>
-{% endblock vendor_js %}
+{% endblock plugins_js %}
 
 
   {% block main_css %}
