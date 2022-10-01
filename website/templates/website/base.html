@@ -49,7 +49,7 @@
 
   {% endblock plugins_css %}
 
-{% block plugins_js %}
+{% comment %} {% block plugins_js %}
 <!-- plugins JS Files -->
 <script src="{% static 'website/plugins/purecounter/purecounter_vanilla.js' %}"></script>
 <script src="{% static 'website/plugins/aos/aos.js' %}"></script>
@@ -58,7 +58,7 @@
 <script src="{% static 'website/plugins/isotope-layout/isotope.pkgd.min.js' %}"></script>
 <script src="{% static 'website/plugins/swiper/swiper-bundle.min.js' %}"></script>
 <script src="{% static 'website/plugins/php-email-form/validate.js' %}"></script>
-{% endblock plugins_js %}
+{% endblock plugins_js %} {% endcomment %}
 
 
   {% block main_css %}
