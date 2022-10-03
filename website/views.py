@@ -1,9 +1,10 @@
 
+from http.client import HTTPResponse
 from django.shortcuts import render
 from .models import Info_counter, ServiceDescription, Contact, Team
 from django.core.mail import send_mail, BadHeaderError
-from django.http import HttpResponse, Http404
 from .forms import ContactForm
+from django.contrib import messages
 
 
 
@@ -14,50 +15,64 @@ def index(request):
     context={
         "count":count,
         "service": service,
-        "contact": contact
+        "contact": contact,
+        'nbar': 'home' ,
     }
     return render(request,'website/index.html', context)
 
 
 
 # def contact(request):
-   
-#     if request.method == 'POST':
-        
-#         name = request.POST['name']
-#         email = request.POST['email']
-#         subject = request.POST['subject']
-#         message = request.POST['message']
+#     form = ContactForm()
 
-#         contact = Contact(name=name, email=email, subject=subject, message=message)
-#         contact.save()
-#         return render (request,'website/contact.html')
-#     else:    
-#         return render(request, 'website/contact.html')
+# 	if request.method == 'POST':
+
+# 		form = ContactForm(request.POST)
+# 		if form.is_valid():
+# 			subject = "Website Inquiry" 
+# 			body = {
+# 			'name': form.cleaned_data['name'], 
+# 			'subject': form.cleaned_data['subject'], 
+# 			'email': form.cleaned_data['email'], 
+# 			'message':form.cleaned_data['message'], 
+# 			}
+# 			message = "\n".join(body.values())
+
+# 			try:
+# 				send_mail(subject, message, 'admin@example.com', ['admin@example.com']) 
+# 			except BadHeaderError:
+# 				return HttpResponse('Invalid header found.')
+# 			# return render (request,"website/contact.html")
+           
+#     context={'nbar': 'contact', 'form': form}
+# 	return render(request, "website/contact.html", {'form':form})
 
 def contact(request):
-	if request.method == 'POST':
-		form = ContactForm(request.POST)
-		if form.is_valid():
-			subject = "Website Inquiry" 
-			body = {
-			'name': form.cleaned_data['name'], 
-			'subject': form.cleaned_data['subject'], 
-			'email': form.cleaned_data['email'], 
-			'message':form.cleaned_data['message'], 
-			}
-			message = "\n".join(body.values())
+    form  = ContactForm()
 
-			try:
-				send_mail(subject, message, 'admin@example.com', ['admin@example.com']) 
-			except BadHeaderError:
-				return HttpResponse('Invalid header found.')
-			return render (request,"website/contact.html")
-      
-	form = ContactForm()
-	return render(request, "website/contact.html", {'form':form})
+    if request.method == 'POST':
+        
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            subject = "Website Inquiry"
+            body = {
+                'name': form.cleaned_data['name'],
+                'subject': form.cleaned_data['subject'],
+                'email': form.cleaned_data['email'],
+                'message': form.cleaned_data['message'],
+            }
+            message = "\n".join(body.values())
+            messages.success(request, 'Form submission successful')
+            form.save()
 
+            try:
+                send_mail(subject, message, 'agnelofernandes@gmail.com',['howis@gmail.com'])
+            except BadHeaderError:
+                return HTTPResponse('Invalid header found.')
+            # return HttpResponse("Your query has been sent.", status=200)
 
+    context={'nbar': 'contact', 'form': form}
+    return render(request, 'website/contact.html', context)
 
 def service(request):
 
@@ -66,7 +81,8 @@ def service(request):
     context={
        
         "service": service,
-		 "team": team
+		 "team": team, 
+         'nbar': 'service'
     }
     return render (request,'website/service.html',context)
     
@@ -77,13 +93,20 @@ def about(request):
     context={
        
         
-		 "team": team
+		 "team": team,
+         'nbar': 'about',
     }
     return render (request,'website/about.html',context)
 
 
 def project(request):
-    return render (request,'website/project.html')
+    context = {
+        'nbar' : 'project'
+    }
+    return render (request,'website/project.html', context)
 
-
-# Create your views here.
+def blog(request):
+    context = {
+        'nbar': 'blog',
+    }
+    return render(request, 'website/blog-grid.html')
