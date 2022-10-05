@@ -21,8 +21,9 @@
 		<div class="row">
 			<div class="col-lg-9 col-md-10">
 				<div class="block">
-					<span class="d-block mb-3 text-white text-capitalize">Prepare for new future</span>
+					
 					<h1 class="animated fadeInUp mb-5">Offering modern data <br>analytics solutions for <br>for growing your business</h1>
+					<span class="d-block mb-3 text-white text-capitalize">We are a team of talented data scientists and engineers making large-scale web applications and dashboards for analytics and automating workflows</span>
 					<a href="#"  class="btn btn-main animated fadeInUp btn-round-full" aria-label="Get started">Get started<i class="btn-icon fa fa-angle-right ml-2"></i></a>
 				</div>
 			</div>
@@ -80,9 +81,8 @@
 					<span class="h6 text-color">What we are</span>
 					<h2 class="mt-3 mb-4 position-relative content-title">We are dynamic team of creative people</h2>
 					<div class="about-content">
-						<h4 class="mb-3 position-relative">We are Perfect Solution</h4>
-						<p class="mb-5">We provide consulting services in the area of IFRS and management reporting, helping
-							companies to reach their highest level. We optimize business processes, making them easier.</p>
+						<h4 class="mb-3 position-relative">We are customer and research oriented, multi-skilled engineers and consultants focused on successful business outcomes and exemplary customer experience</h4>
+						<p class="mb-5">We provide solutions to address modern big data business challenges, helping your business gain actionable insights out of your data and use it for effective digital transformation. </p>
 
 						<a href="/about/" class="btn btn-main btn-round-full">Our Team</a>
 					</div>
@@ -231,6 +231,98 @@
 	</div>
 </section>
 <!--  Section Cta End-->
+
+    <!-- Benefits Start -->
+<section class="benefits">
+    <div class="container-fluid py-5">
+        <div class="container py-5">
+            <div class="text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 100%;">
+                <span class="h6 text-color">Benefits of working with us</span>
+                <h1 class="content-title mb-0">AiPrizm's analytics and data science experts can help your organization</h1>
+            </div>
+    
+            <div class="row g-5">
+    
+                <div class="col-lg-6">
+                    <div class="row gx-5">
+                        
+    
+                        <div class="col-12 icon-box">
+                                    <i class="fa-solid fa-2x fa-chart-line"></i>
+
+                                <div>
+                                    <h4 style="text-align: center; border-bottom: 1px solid #000;" class=" pb-3">Increased profits</h4>
+                                    <p class="mb-0">We can help you tap into your data to compare and contrast metrics by measuring, tracking and recording
+                                        them for you to make informed data-driven decisions that can help you to increase profits.</p>
+                                    </div>
+                            
+                        </div>
+                        <div class="col-12 icon-box">
+                            <i class="fa-solid fa-2x fa-brush"></i>
+                            <div>
+                                <h4 style="text-align: center; border-bottom: 1px solid #000;" class="pb-3">Increase operational efficiency</h4>
+                            
+                                <p class="mb-0">We examine and probe existing processes to develop additional methods to optimize them. Using various
+                                    analytical techniques we can figure out issues that bottleneck productivity and output. </p>
+                            </div>
+                            
+                        </div>
+                        <div class="col-12 icon-box">
+                            <i class="fa-solid fa-terminal"></i>
+                            <div>
+                                <h4 style="text-align: center; border-bottom: 1px solid #000;" class="pb-3">Increase operational efficiency</h4>
+                            
+                                <p class="mb-0">We examine and probe existing processes to develop additional methods to optimize them. Using various
+                                    analytical techniques we can figure out issues that bottleneck productivity and output. </p>
+                            </div>
+                            
+                            
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6">
+                    <div class="row g-5">
+                        
+                        <div class="col-12 icon-box">
+                            <i class="fa-solid fa-layer-group"></i>
+                            <div>
+                                <h4 style="text-align: center; border-bottom: 1px solid #000;" class="pb-3">Manage and understand your data better</h4>
+            
+                                <p class="mb-0">To exploit your data holds, it is crucial to have a good dataset. We help you to extract clean and
+                                    quality data. Furthermore, we can analyze your data, bring out insights and prescribe actions to improve your
+                                    organization's performance</p>
+                            </div>
+                            
+                        </div>
+                        <div class="col-12 icon-box">
+                            <i class="fa-solid fa-star"></i>
+                            <div>
+                                <h4 style="text-align: center; border-bottom: 1px solid #000;" class="pb-3">Know your business and customers better</h4>
+            
+                                <p class="mb-0">Our data science services can help businesses to figure out market trends, understand customer behavior,
+                                    build business strategies and predict future events.</p>
+                            </div>
+                            
+                        </div>
+                        <div class="col-12 icon-box">
+                            <i class="fa-solid fa-satellite-dish"></i>
+                            <div>
+                                <h4 style="text-align: center; border-bottom: 1px solid #000;" class="pb-3">Assess and mitigate risks in time</h4>
+                            
+                                <p class="mb-0">In business, risks are everywhere. We are trained to recognize data that stands out in a way. We use
+                                    models to find unusual events and create alerts to help ensure timely responses. </p>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+    <!-- Benefits End -->
+
 <!-- Section Testimonial Start -->
 <section class="section testimonial">
 	<div class="container">
@@ -246,58 +338,24 @@
 
 	<div class="container">
 		<div class="row testimonial-wrap">
+			{% for testimonial in testimonial %}
 			<div class="testimonial-item position-relative">
 				<i class="ti-quote-left text-color"></i>
 
 				<div class="testimonial-item-content">
-					<p class="testimonial-text">Quam maiores perspiciatis temporibus odio reiciendis error alias debitis atque
-						consequuntur natus iusto recusandae numquam corrupti facilis blanditiis.</p>
+					<p class="testimonial-text">{{testimonial.testclient_desc}}</p>
 
 					<div class="testimonial-author">
-						<h5 class="mb-0 text-capitalize">Thomas Johnson</h5>
-						<p>Excutive Director,themefisher</p>
+						<h5 class="mb-0 text-capitalize">{{testimonial.testclient_name}}</h5>
+						<p>{{testimonial.testclient_profession}}</p>
 					</div>
 				</div>
 			</div>
-			<div class="testimonial-item position-relative">
-				<i class="ti-quote-left text-color"></i>
-
-				<div class="testimonial-item-content">
-					<p class="testimonial-text">Consectetur adipisicing elit. Quam maiores perspiciatis temporibus odio reiciendis
-						error alias debitis atque consequuntur natus iusto recusandae .</p>
-
-					<div class="testimonial-author">
-						<h5 class="mb-0 text-capitalize">Mickel hussy</h5>
-						<p>Excutive Director,themefisher</p>
-					</div>
-				</div>
-			</div>
-			<div class="testimonial-item position-relative">
-				<i class="ti-quote-left text-color"></i>
-
-				<div class="testimonial-item-content">
-					<p class="testimonial-text">Quam maiores perspiciatis temporibus odio reiciendis error alias debitis atque
-						consequuntur natus iusto recusandae numquam corrupti.</p>
-
-					<div class="testimonial-author">
-						<h5 class="mb-0 text-capitalize">James Watson</h5>
-						<p>Excutive Director,themefisher</p>
-					</div>
-				</div>
-			</div>
-			<div class="testimonial-item position-relative">
-				<i class="ti-quote-left text-color"></i>
-
-				<div class="testimonial-item-content">
-					<p class="testimonial-text">Consectetur adipisicing elit. Quam maiores perspiciatis temporibus odio reiciendis
-						error alias debitis atque consequuntur natus iusto recusandae .</p>
-
-					<div class="testimonial-author">
-						<h5 class="mb-0 text-capitalize">Mickel hussy</h5>
-						<p>Excutive Director,themefisher</p>
-					</div>
-				</div>
-			</div>
+			{% endfor %}
+			
+			
+			
+			
 		</div>
 	</div>
 </section>
@@ -377,7 +435,7 @@
 		<div class="cta-block-2 bg-gray p-5 rounded border-1">
 			<div class="row justify-content-center align-items-center ">
 				<div class="col-lg-7">
-					<span class="text-color">For Every type business</span>
+					<span class="text-color">Please Feel Free to Contact Us</span>
 					<h2 class="mt-2 mb-4 mb-lg-0">Entrust Your Project to Our Best Team of Professionals</h2>
 				</div>
 				<div class="col-lg-4">

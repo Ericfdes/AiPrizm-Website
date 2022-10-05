@@ -1,7 +1,7 @@
 
 from http.client import HTTPResponse
 from django.shortcuts import render
-from .models import Info_counter, ServiceDescription, Contact, Team
+from .models import *
 from django.core.mail import send_mail, BadHeaderError
 from .forms import ContactForm
 from django.contrib import messages
@@ -12,10 +12,12 @@ def index(request):
     count=Info_counter.objects.all()
     service=ServiceDescription.objects.all()
     contact=Contact.objects.all()
+    testimonial = Testimonial.objects.all()
     context={
         "count":count,
         "service": service,
         "contact": contact,
+        "testimonial": testimonial,
         'nbar': 'home' ,
     }
     return render(request,'website/index.html', context)

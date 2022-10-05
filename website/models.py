@@ -1,11 +1,5 @@
-
-
 from django.db import models
-
-
-
-
-
+# Create your models here.
 
 class Info_counter(models.Model):
 
@@ -68,6 +62,12 @@ class Team(models.Model):
     def __str__(self):
         return self.name
 
+class Testimonial(models.Model):
+    testclient_name=models.CharField(max_length=50)
+    testclient_profession=models.CharField(max_length=50)
+    testclient_desc=models.CharField(max_length=500)
 
+    def __str__(self):
+            return self.testclient_name
     
-# Create your models here.
+
