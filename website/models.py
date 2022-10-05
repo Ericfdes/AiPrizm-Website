@@ -1,6 +1,6 @@
 
 
-from email.policy import default
+
 from django.db import models
 
 
@@ -34,10 +34,6 @@ class ServiceDescription(models.Model):
     def __str__(self):
         return self.heading
  
-# class Services(models.Model):
-#     service=models.CharField(max_length=50, default="services")
-#     heading=models.CharField(max_length=50)
-#     Description=models.TextField(max_length=500)
     
 class Contact(models.Model):
     email=models.EmailField(max_length=254)
