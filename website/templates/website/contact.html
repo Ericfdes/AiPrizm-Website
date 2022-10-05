@@ -28,53 +28,77 @@
 
 <!-- contact form start -->
 <section class="contact-form-wrap section">
-	<div class="container">
+	<div class="contact container ">
 		<div class="row">
 			<div class="col-lg-6 col-md-12 col-sm-12">
 				
-				<form id="contact-form" class="contact__form" method="post" role=form action="">
+				<!-- Contact Form Start -->
+				<form class="contact_us_form" id="contact-form">
 					{% csrf_token %}
-					<h3 class="text-md mb-4">Contact Form</h3>
-					
-				
-					{{ contact_form.non_field_errors }}
-					<div class="form-group">
-						{{form.name.errors }}
-						{{form.name }}
-
-						{% comment %} <input name="name" type="text" class="form-control" placeholder="Name" required> {% endcomment %}
-					</div>
-					<div class="form-group">
-						{{form.email.errors }}
-						{{form.email }}
-						{% comment %} <input name="email" type="email" class="form-control" placeholder="Email" required> {% endcomment %}
-					</div>
-					<div class="form-group">
-						{{form.subject.errors }}
-						{{form.subject }}
-						{% comment %} <input name="subject" type="text" class="form-control" placeholder="subject" required> {% endcomment %}
-					</div>
-					
-					<div class="form-group-2 mb-4">
-						{{form.message.errors }}
-						{{form.message }}
-						{% comment %} <textarea name="message" class="form-control" rows="4" placeholder="Message" required></textarea> {% endcomment %}
-					</div>
-					<div class="col-md-12 text-center">
-						<div class="loading">Loading</div>
-						<div class="error-message">Oops! There was an issue. Please mail us at
-							aiprizmtech@gmail.com
-						</div>
-						<div class="sent-message">Your message has been sent, we will get back to you. Thank
-							you!
+					<div class="row g-3">
+						{{form.non_field_errors}}
+						<div class="col-md-6">
+							{{form.name.errors}}
+							{% comment %} <input type="text" class="form-control border-0 bg-light px-4"
+								placeholder="Your Name" style="height: 55px;"> {% endcomment %}
+							{{form.name}}
 						</div>
 
-					
-					</div>
+						<div class="col-md-6">
+							{{form.email.errors}}
+							{% comment %} <input type="email" class="form-control border-0 bg-light px-4"
+								placeholder="Your Email" style="height: 55px;"> {% endcomment %}
+							{{form.email}}
+						</div>
 
-						<button class="btn btn-main" name="submit" type="submit">Send Message</button>
-					
+						<div class="col-12">
+							{{form.subject.errors}}
+							{% comment %} <input type="text" class="form-control border-0 bg-light px-4"
+								placeholder="Subject" style="height: 55px;"> {% endcomment %}
+							{{form.subject}}
+						</div>
+
+						<div class="col-12">
+							{{form.message.errors}}
+							{% comment %} <textarea class="form-control border-0 bg-light px-4 py-3" rows="4"
+								placeholder="Message"></textarea> {% endcomment %}
+							{{form.message}}
+						</div>
+
+						<div class="col-md-12 text-center">
+							<div class="loading">Loading</div>
+
+							<div class="error-message">
+								<div class="row">
+									<div class="col-sm-11" style="font-size: 0.927rem;">Oops! There was an issue. Please mail us at
+										aiprizmtech@gmail.com
+									</div>
+									<div class="col-sm-1 text-right">
+										<button type="button" class="btn-close btn-close-white" aria-label="Close" id="closeBtnError"></button>
+									</div>
+								</div>
+							</div>
+
+
+							<div class="sent-message">
+								<div class="row">
+									<div class="col-sm-11">
+										Your message has been sent, we will get back to you. Thank you!
+									</div>
+									<div class="col-sm-1 text-right">
+										<button type="button" class="btn-close btn-close-white" aria-label="Close" id="closeBtn"></button>
+									</div>
+								</div>
+							</div>
+
+							<button class="btn btn-primary w-100 py-3" type="submit">Send Message</button>
+
+
+						</div>
+
+					</div>
 				</form>
+				<!-- Contact Form End -->
 
 			</div>
 
@@ -126,8 +150,9 @@
 
     // AJAX for posting
     function contact_us() {
+		$('.loading').addClass("d-block")
         $.ajax({
-            headers: {'X-Requested-With': 'XMLHttpRequest'},
+            type: 'POST',
             url : "{% url 'contact' %}", // the endpoint
             type : "POST", // http method
             data : {
@@ -139,6 +164,7 @@
             }, // data sent with the post request
             // handle a successful response
             success : function(json) {
+				
                 $('#id_name').val(''); // remove the value from the input
                 $('#id_subject').val(''); // remove the value from the input
                 $('#id_email').val(''); // remove the value from the input
@@ -149,20 +175,33 @@
             // handle a non-successful response
             error : function(xhr,errmsg,err) {
                 $(".error-message").addClass("d-block")
-                //console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
+				$('.loading').removeClass("d-block")
+                
             }
+        }).done((response) => {
+            $('.loading').removeClass("d-block")
         });
     }
 
     // Submit post on submit
-    $('.php-email-form').off().on('submit', function(event){
+    $('#contact-form').off().on('submit', function(event){
         event.preventDefault();
         contact_us();
     });
 
-    $('.portfolio').hide();
-    $('.testimonials').hide();
-    $('.recent-blog-posts').hide();
+	$("#closeBtn").click(function () {
+        // $("#closeBtn").css("display", "none");
+        $(".sent-message").removeClass("d-block")
+            
+        });
+
+    $("#closeBtnError").click(function () {
+        // $("#closeBtn").css("display", "none");
+        $(".error-message").removeClass("d-block")
+    });
+    // $('.portfolio').hide();
+    // $('.testimonials').hide();
+    // $('.recent-blog-posts').hide();
 
 })
 
