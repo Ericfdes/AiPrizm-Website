@@ -1403,37 +1403,12 @@ h3.quote::before {
     margin-bottom: 30px;
     padding-bottom: 0px;
   }
+
+
+  
+
 }
 /*# sourceMappingURL=style.css.map */
-
-/*--------------------------------------------------------------
-# Benefits
---------------------------------------------------------------*/
-
-.icon-box {
-  display: flex;
-  height: 330px;
-}
-
-.icon-box h4 {
-  font-size: 1.5rem;
-  font-weight: 700;
-  margin: 0 0 10px 0;
-  color: #000000;
-}
-.icon-box i {
-  font-size: 44px;
-  line-height: 44px;
-  margin-right: 15px;
-  color: #817e7e;
-}
-
-.icon-box p {
-  font-size: 1rem;
-  color: #848484;
-}
-
-   
 /*--------------------------------------------------------------
 # Contact
 --------------------------------------------------------------*/
@@ -1446,7 +1421,7 @@ h3.quote::before {
 .contact_us_form .error-message {
   display: none;
   color: #fff;
-  background: #ed3c0d;
+  background: #ff0000;
   text-align: left;
   padding: 15px;
   margin-bottom: 24px;
@@ -1504,7 +1479,7 @@ h3.quote::before {
   border-radius: 4px;
 }
 .contact_us_form button[type=submit]:hover {
-  background: #7d1f04;
+  background: #801e03;
 }
 
 #closeBtn #closeBtnError{

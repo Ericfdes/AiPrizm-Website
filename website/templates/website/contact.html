@@ -28,7 +28,7 @@
 
 <!-- contact form start -->
 <section class="contact-form-wrap section">
-	<div class="container">
+	<div class="contact container ">
 		<div class="row">
 			<div class="col-lg-6 col-md-12 col-sm-12">
 				
@@ -37,23 +37,31 @@
 					{% csrf_token %}
 					<div class="row g-3">
 						{{form.non_field_errors}}
-						<div class="col-md-6 pb-3">
+						<div class="col-md-6">
 							{{form.name.errors}}
+							{% comment %} <input type="text" class="form-control border-0 bg-light px-4"
+								placeholder="Your Name" style="height: 55px;"> {% endcomment %}
 							{{form.name}}
 						</div>
 
-						<div class="col-md-6 pb-3">
+						<div class="col-md-6">
 							{{form.email.errors}}
+							{% comment %} <input type="email" class="form-control border-0 bg-light px-4"
+								placeholder="Your Email" style="height: 55px;"> {% endcomment %}
 							{{form.email}}
 						</div>
 
-						<div class="col-12 pb-3">
+						<div class="col-12">
 							{{form.subject.errors}}
+							{% comment %} <input type="text" class="form-control border-0 bg-light px-4"
+								placeholder="Subject" style="height: 55px;"> {% endcomment %}
 							{{form.subject}}
 						</div>
 
-						<div class="col-12 pb-3">
+						<div class="col-12">
 							{{form.message.errors}}
+							{% comment %} <textarea class="form-control border-0 bg-light px-4 py-3" rows="4"
+								placeholder="Message"></textarea> {% endcomment %}
 							{{form.message}}
 						</div>
 
@@ -82,11 +90,16 @@
 									</div>
 								</div>
 							</div>
+
 							<button class="btn btn-primary w-100 py-3" type="submit">Send Message</button>
+
+
 						</div>
+
 					</div>
 				</form>
 				<!-- Contact Form End -->
+
 			</div>
 
 			<div class="col-lg-5 col-sm-12">
@@ -128,4 +141,72 @@
 </div>
 
 
+
+
+{% block page_js %}
+<script type='text/javascript'>
+
+  $(document).ready(function(){
+
+    // AJAX for posting
+    function contact_us() {
+		$('.loading').addClass("d-block")
+        $.ajax({
+            type: 'POST',
+            url : "{% url 'contact' %}", // the endpoint
+            type : "POST", // http method
+            data : {
+              name: $('#id_name').val(),
+              subject: $('#id_subject').val(),
+              email: $('#id_email').val(),
+              message: $('#id_message').val(),
+              csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+            }, // data sent with the post request
+            // handle a successful response
+            success : function(json) {
+				
+                $('#id_name').val(''); // remove the value from the input
+                $('#id_subject').val(''); // remove the value from the input
+                $('#id_email').val(''); // remove the value from the input
+                $('#id_message').val('');
+                $(".sent-message").addClass("d-block")
+            },
+
+            // handle a non-successful response
+            error : function(xhr,errmsg,err) {
+                $(".error-message").addClass("d-block")
+				$('.loading').removeClass("d-block")
+                
+            }
+        }).done((response) => {
+            $('.loading').removeClass("d-block")
+        });
+    }
+
+    // Submit post on submit
+    $('#contact-form').off().on('submit', function(event){
+        event.preventDefault();
+        contact_us();
+    });
+
+	$("#closeBtn").click(function () {
+        // $("#closeBtn").css("display", "none");
+        $(".sent-message").removeClass("d-block")
+            
+        });
+
+    $("#closeBtnError").click(function () {
+        // $("#closeBtn").css("display", "none");
+        $(".error-message").removeClass("d-block")
+    });
+    // $('.portfolio').hide();
+    // $('.testimonials').hide();
+    // $('.recent-blog-posts').hide();
+
+})
+
+
+</script>
+
+{% endblock page_js %}
 {% endblock content%}

@@ -139,26 +139,29 @@
 			<div class="col-lg-7 text-center">
 			
 				<div class="section-title">
-					{% for service in service  %}
+				
 					<span class="h6 text-color">Our Services</span>
-					<h2 class="mt-3 content-title ">{{service.headDiscription}}</h2>
-					{% endfor %}
+					<h2 class="mt-3 content-title ">text here</h2>
+				
 				</div>
 				
 			</div>
 		</div>
 
 		<div class="row justify-content-center">
+			{% for service in service  %}
 			<div class="col-lg-4 col-md-6 col-sm-6">
-				{% for service in service  %}
+			
 				<div class="service-item mb-5">
-					<i class="ti-desktop"></i>
-					<h4 class="mb-3">Web Development.</h4>
-					<p>{{service.webdev}}</p>	
+					<i class="{{service.logo}}"></i>
+					{% comment %} <i class="ti-desktop"></i> {% endcomment %}
+					<h4 class="mb-3">{{service.heading}}</h4>
+					<p>{{service.description}}</p>	
+				</div>
+				
 			</div>
-				{% endfor %}
-			</div>
-
+			{% endfor %}
+{% comment %} 
 			<div class="col-lg-4 col-md-6 col-sm-6">
 				<div class="service-item mb-5">
 					{% for service in service  %}
@@ -167,9 +170,9 @@
 					<p>{{service.automation}}</p>
 				</div>
 				{% endfor %}
-			</div>
+			</div> {% endcomment %}
 
-			<div class="col-lg-4 col-md-6 col-sm-6">
+			{% comment %} <div class="col-lg-4 col-md-6 col-sm-6">
 				<div class="service-item mb-5">
 					{% for service in service  %}
 					<i class="ti-bar-chart"></i>
@@ -177,9 +180,9 @@
 					<p>{{service.dataA}}</p>
 					{% endfor %}
 				</div>
-			</div>
+			</div> {% endcomment %}
 
-			<div class="col-lg-4 col-md-6 col-sm-6">
+			{% comment %} <div class="col-lg-4 col-md-6 col-sm-6">
 				{% for service in service  %}
 				<div class="service-item mb-5 mb-lg-0">
 					<i class="ti-vector"></i>
@@ -187,9 +190,9 @@
 					<p>{{service.Mlearning}}</p>
 				</div>
 				{% endfor %}
-			</div>
+			</div> {% endcomment %}
 
-			<div class="col-lg-4 col-md-6 col-sm-6">
+			{% comment %} <div class="col-lg-4 col-md-6 col-sm-6">
 				{% for service in service  %}
 				<div class="service-item mb-5 mb-lg-0">
 					<i class="ti-android"></i>
@@ -198,9 +201,9 @@
 
 				</div>
 				{% endfor %}
-			</div>
+			</div> {% endcomment %}
 
-			<div class="col-lg-4 col-md-6 col-sm-6">
+			{% comment %} <div class="col-lg-4 col-md-6 col-sm-6">
 				{% for service in service  %}
 				<div class="service-item mb-5 mb-lg-0">
 					<i class="ti-pencil-alt"></i>
@@ -208,7 +211,7 @@
 					<p>A digital agency isn't here to replace your internal team, we're here to partner</p>
 				</div>
 				{% endfor %}
-			</div>
+			</div> {% endcomment %}
 		</div>
 	
 	</div>

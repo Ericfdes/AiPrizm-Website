@@ -1,3 +1,4 @@
+from email.policy import default
 from django.db import models
 # Create your models here.
 
@@ -18,17 +19,14 @@ class Info_counter(models.Model):
 
 
 class ServiceDescription(models.Model):
-    headDiscription=models.TextField( max_length=500)
-    webdev=models.TextField( max_length=500)
-    Mlearning=models.TextField( max_length=500)
-    dataA=models.TextField( max_length=500)
-    appdev=models.TextField(max_length=500, default="none")
-    automation=models.TextField(max_length=500, default="none")
-    DigitalMarketing=models.TextField(max_length=500, default="none")
+    heading=models.CharField(max_length=100,default="")
+    description=models.TextField(max_length=500,default="none")
+    logo=models.CharField(max_length=100,default="")
+    
 
 
     def __str__(self):
-        return self.headDiscription 
+        return self.heading
  
 # class Services(models.Model):
 #     service=models.CharField(max_length=50, default="services")

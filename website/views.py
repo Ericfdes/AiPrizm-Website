@@ -4,7 +4,7 @@ from django.shortcuts import render
 from .models import *
 from django.core.mail import send_mail, BadHeaderError
 
-from aiprizmWeb.settings import EMAIL_HOST_USER
+from django.conf import settings
 from .models import Info_counter, ServiceDescription, Contact, Team
 from django.core.mail import send_mail, BadHeaderError
 from django.http import HttpResponse
@@ -53,7 +53,7 @@ def contact(request):
             'email': form.cleaned_data['email'],
             'message': form.cleaned_data['message'],
             }
-            form.save()
+            
             email_header = "A new client is trying to contact you:"
             message = "\n".join([email_header] + [f"{key}: {value}" for key, value in body.items()])
             response = "Your message has been sent. Thank you!"
@@ -61,7 +61,8 @@ def contact(request):
             
 
             try:
-                send_mail(subject, message, body.get('email'), [EMAIL_HOST_USER]) 
+                form.save()
+                send_mail(subject, message, body.get('email'), ['settings.EMAIL_HOST_USER']) 
             except BadHeaderError:
                 return HttpResponse('Invalid header found.')
             return HttpResponse ("Message sent successfully",status=200)
