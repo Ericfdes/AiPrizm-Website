@@ -66,17 +66,8 @@ def contact(request):
                 return HttpResponse('Invalid header found.')
             return HttpResponse ("Message sent successfully",status=200)
       
-            # form = ContactForm()
-            # return render(request, "website/contact.html", {'form':form})
-
-            # try:
-            #     send_mail(subject, message, 'agnelofernandes@gmail.com',['howis@gmail.com'])
-            # except BadHeaderError:
-            #     return HTTPResponse('Invalid header found.')
-            # # return HttpResponse("Your query has been sent.", status=200)
-
-    context={'nbar': 'contact', 'form': form}
-    return render(request, 'website/contact.html', context)
+    form = ContactForm()
+    return render(request, "website/contact.html", {'form':form})
 
 def service(request):
 
