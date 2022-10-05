@@ -60,8 +60,22 @@
 						{{form.message }}
 						{% comment %} <textarea name="message" class="form-control" rows="4" placeholder="Message" required></textarea> {% endcomment %}
 					</div>
-					<button class="btn btn-main" name="submit" type="submit">Send Message</button>
+					<div class="col-md-12 text-center">
+						<div class="loading">Loading</div>
+						<div class="error-message">Oops! There was an issue. Please mail us at
+							aiprizmtech@gmail.com
+						</div>
+						<div class="sent-message">Your message has been sent, we will get back to you. Thank
+							you!
+						</div>
+
+					
+					</div>
+
+						<button class="btn btn-main" name="submit" type="submit">Send Message</button>
+					
 				</form>
+
 			</div>
 
 			<div class="col-lg-5 col-sm-12">
@@ -101,4 +115,59 @@
 <div class="google-map">
 	<div id="map" data-latitude="40.712776" data-longitude="-74.005974" data-marker="images/marker.png" data-marker-name="Megakit"></div>
 </div>
+
+
+
+
+{% block page_js %}
+<script type='text/javascript'>
+
+  $(document).ready(function(){
+
+    // AJAX for posting
+    function contact_us() {
+        $.ajax({
+            headers: {'X-Requested-With': 'XMLHttpRequest'},
+            url : "{% url 'contact' %}", // the endpoint
+            type : "POST", // http method
+            data : {
+              name: $('#id_name').val(),
+              subject: $('#id_subject').val(),
+              email: $('#id_email').val(),
+              message: $('#id_message').val(),
+              csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+            }, // data sent with the post request
+            // handle a successful response
+            success : function(json) {
+                $('#id_name').val(''); // remove the value from the input
+                $('#id_subject').val(''); // remove the value from the input
+                $('#id_email').val(''); // remove the value from the input
+                $('#id_message').val('');
+                $(".sent-message").addClass("d-block")
+            },
+
+            // handle a non-successful response
+            error : function(xhr,errmsg,err) {
+                $(".error-message").addClass("d-block")
+                //console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
+            }
+        });
+    }
+
+    // Submit post on submit
+    $('.php-email-form').off().on('submit', function(event){
+        event.preventDefault();
+        contact_us();
+    });
+
+    $('.portfolio').hide();
+    $('.testimonials').hide();
+    $('.recent-blog-posts').hide();
+
+})
+
+
+</script>
+
+{% endblock page_js %}
 {% endblock content%}
