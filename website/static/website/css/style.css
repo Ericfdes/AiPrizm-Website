@@ -1505,3 +1505,29 @@ h3.quote::before {
     transform: rotate(360deg);
   }
 }
+
+/*--------------------------------------------------------------
+# Benefits
+--------------------------------------------------------------*/
+
+.icon-box {
+  display: flex;
+  height: 230px;
+}
+
+.icon-box h4 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0 0 10px 0;
+  color: #000000;
+}
+.icon-box i {
+  font-size: 44px;
+  line-height: 44px;
+  color: #000000;
+  margin-right: 15px;
+}
+.icon-box p {
+  font-size: 1rem;
+  color: #848484;
+}

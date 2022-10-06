@@ -5,7 +5,7 @@ from .models import *
 from django.core.mail import send_mail, BadHeaderError
 
 from django.conf import settings
-from .models import Info_counter, ServiceDescription, Contact, Team
+from .models import Info_counter, ServiceDescription, Contact, Team, Testimonial
 from django.core.mail import send_mail, BadHeaderError
 from django.http import HttpResponse
 from .forms import ContactForm

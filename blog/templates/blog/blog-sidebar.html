@@ -1,10 +1,10 @@
 
-{% extends 'aiprizm/base.html' %}
+{% extends 'website/base.html' %}
 {% load static %}
 {% block title %}Blog{% endblock title %}
 
 
-{% block content %}{% endblock content %}
+{% block content %}
 
 
 
@@ -46,7 +46,7 @@
 								<p class="mb-4">Non illo quas blanditiis repellendus laboriosam minima animi. Consectetur accusantium
 									pariatur repudiandae!</p>
 
-								<a href="blog-single.html" class="btn btn-small btn-main btn-round-full">Learn More</a>
+								<a href="{% url 'blog_detail' %}" class="btn btn-small btn-main btn-round-full">Learn More</a>
 							</div>
 						</div>
 					</div>
@@ -64,7 +64,7 @@
 								<p class="mb-4">Non illo quas blanditiis repellendus laboriosam minima animi. Consectetur accusantium
 									pariatur repudiandae!</p>
 
-								<a href="blog-single.html" class="btn btn-small btn-main btn-round-full">Learn More</a>
+								<a href="{% url 'blog_detail' %}" class="btn btn-small btn-main btn-round-full">Learn More</a>
 							</div>
 						</div>
 					</div>
@@ -82,7 +82,7 @@
 								<p class="mb-4">Non illo quas blanditiis repellendus laboriosam minima animi. Consectetur accusantium
 									pariatur repudiandae!</p>
 
-								<a href="blog-single.html" class="btn btn-small btn-main btn-round-full">Learn More</a>
+								<a href="{% url 'blog_detail' %}" class="btn btn-small btn-main btn-round-full">Learn More</a>
 							</div>
 						</div>
 					</div>
@@ -99,7 +99,7 @@
 								<p class="mb-4">Non illo quas blanditiis repellendus laboriosam minima animi. Consectetur accusantium
 									pariatur repudiandae!</p>
 
-								<a href="blog-single.html" class="btn btn-small btn-main btn-round-full">Learn More</a>
+								<a href="{% url 'blog_detail' %}" class="btn btn-small btn-main btn-round-full">Learn More</a>
 							</div>
 						</div>
 					</div>
