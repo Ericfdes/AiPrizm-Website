@@ -5,7 +5,8 @@ from . import views
 
 urlpatterns = [
     path('blog/', views.blog, name='blog'),
-    path('blog_detail/', views.blog_detail, name='blog_detail'),
+    path('blog_grid/', views.blog_grid, name='blog_grid'),
+    path('blog_detail/<str:slug_url>', views.blog_detail, name='blog_detail'),
 
     
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

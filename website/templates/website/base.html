@@ -126,9 +126,10 @@
                 <li class="nav-item dropdown {% if nbar == 'blog' %}active{% endif %} @@blog">
                   <a class="nav-link dropdown-toggle" href="#" id="dropdown05" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Blog <i class="fas fa-chevron-down small"></i></a>
                   <ul class="dropdown-menu" aria-labelledby="dropdown05">
-                    <li><a class="dropdown-item @@blogGrid" href="{% url 'blog' %}">Blog Grid</a></li>
-                    <li><a class="dropdown-item @@blogSidebar" href="">Blog with Sidebar</a></li>
-                    <li><a class="dropdown-item @@blogSingle" href="{% url 'blog_detail' %}">Blog Single</a></li>
+                    <li><a class="dropdown-item @@blogGrid" href="{% url 'blog_grid' %}">Blog Grid</a></li>
+                    <li><a class="dropdown-item @@blogSidebar" href="{% url 'blog' %}">Blog with Sidebar</a></li>
+                    {% comment %} <li><a class="dropdown-item @@blogSingle" href="{% url 'blog' %}">Blog Single</a></li>  {% endcomment %}
+                    {% comment %} Pass blog_detail later {% endcomment %}
       
                     <li class="dropdown dropdown-submenu dropleft">
                       <a class="dropdown-item dropdown-toggle" href="#!" id="dropdown0501" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sub Menu</a>

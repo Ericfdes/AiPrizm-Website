@@ -1,15 +1,13 @@
 
-from http.client import HTTPResponse
 from django.shortcuts import render
 from .models import *
+from blog.models import Blog
 from django.core.mail import send_mail, BadHeaderError
 
 from django.conf import settings
-from .models import Info_counter, ServiceDescription, Contact, Team, Testimonial
 from django.core.mail import send_mail, BadHeaderError
 from django.http import HttpResponse
 from .forms import ContactForm
-from django.contrib import messages
 
 
 def index(request):
@@ -17,11 +15,13 @@ def index(request):
     service=ServiceDescription.objects.all()
     contact=Contact.objects.all()
     testimonial = Testimonial.objects.all()
+    blog = Blog.objects.all()
     context={
         "count":count,
         "service": service,
         "contact": contact,
         "testimonial": testimonial,
+        "Blog": blog,
         'nbar': 'home' ,
     }
     return render(request, 'website/index.html', context)
