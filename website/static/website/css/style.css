@@ -1,9 +1,4 @@
-/**
- * WEBSITE: https://themefisher.com
- * TWITTER: https://twitter.com/themefisher
- * FACEBOOK: https://www.facebook.com/themefisher
- * GITHUB: https://github.com/themefisher/
- */
+
 
 /*=== MEDIA QUERY ===*/
 @import url("https://fonts.googleapis.com/css2?family=Hind:wght@400;500;600;700&family=Montserrat:wght@400;700&family=Poppins:wght@300;400;600;700&display=swap");
@@ -1414,7 +1409,7 @@ h3.quote::before {
 --------------------------------------------------------------*/
 
 .contact_us_form {
-  background: #fafbff;
+  background: #f5f8f9;
   padding: 30px;
   height: 100%;
 }
@@ -1452,8 +1447,7 @@ h3.quote::before {
   margin: 0 10px -6px 0;
   border: 3px solid #e25858;
   border-top-color: #eee;
-  -webkit-animation: animate-loading 1s linear infinite;
-  animation: animate-loading 1s linear infinite;
+
 }
 .contact_us_form input, .contact_us_form textarea {
   border-radius: 0;
@@ -1504,4 +1498,6 @@ h3.quote::before {
   100% {
     transform: rotate(360deg);
   }
-}
+} 
+
+

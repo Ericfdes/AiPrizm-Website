@@ -129,8 +129,10 @@
                 </li>
                 <li class="nav-item @@service"><a class="nav-link" href="/service">Services</a></li>
                 <li class="nav-item @@project"><a class="nav-link" href="/project">Portfolio</a></li>
+                <li class="nav-item @@project"><a class="nav-link" href="{% url 'blog' %}">Blog</a></li>
+{% comment %} 
                 <li class="nav-item dropdown @@blog">
-                  <a class="nav-link dropdown-toggle" href="#" id="dropdown05" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Blog <i class="fas fa-chevron-down small"></i></a>
+                  <a class="nav-link dropdown-toggle" href="{% url 'blog' %}" id="dropdown05" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Blog <i class="fas fa-chevron-down small"></i></a>
                   <ul class="dropdown-menu" aria-labelledby="dropdown05">
                     <li><a class="dropdown-item @@blogGrid" href="blog-grid.html">Blog Grid</a></li>
                     <li><a class="dropdown-item @@blogSidebar" href="blog-sidebar.html">Blog with Sidebar</a></li>
@@ -145,7 +147,9 @@
                       </ul>
                     </li>
                   </ul>
-                </li>
+                </li> {% endcomment %}
+
+
                 <li class="nav-item @@contact"><a class="nav-link" href="/contact/">Contact</a></li>
               </ul>
       
