@@ -1,9 +1,9 @@
 from email.policy import default
-from unicodedata import category
-from unittest.util import _MAX_LENGTH
 from django.db import models
-from django.forms import ImageField
 from django.template.defaultfilters import slugify
+from ckeditor.fields import RichTextField
+from django_resized import ResizedImageField
+
 # Create your models here.
 
 
@@ -18,7 +18,7 @@ class Blog(models.Model):
     slug = models.SlugField(max_length=200, unique=True, blank=True)
     author = models.ForeignKey('Author', on_delete= models.CASCADE,related_name='blog_posts')
     updated_on = models.DateTimeField(auto_now= True)
-    content = models.TextField()
+    body= RichTextField(blank=True, null=True)
     blog_desc = models.CharField(max_length=200, default = '')
     created_on = models.DateTimeField(auto_now_add=True)
     banner = models.ImageField(upload_to="blog/blog_banners/", null=True, blank=True)
@@ -54,12 +54,17 @@ class Category(models.Model):
         return self.category
 
 class Comment(models.Model):
-    user_name= models.CharField(max_length=100)
-    user_pic= models.ImageField(upload_to="blog/user_pic/", null=True, blank=True)
+    user_name= models.CharField(max_length=250)
+    user_email = models.EmailField(max_length=300, blank=True)
+    user_pic= ResizedImageField(size=[40, 40], upload_to="blog/user_pic/", null=True, blank=True, default='blog/default_pic.png')
     user_address=models.CharField(max_length=50)
-    comment= models.CharField(max_length=2000)
+    body= models.TextField(max_length=4000, null=True)
+    blog = models.ForeignKey('Blog', on_delete=models.CASCADE, related_name='blog_comments')
     commented_on=models.DateTimeField(auto_now_add=True)
+
     
+    class Meta:
+        ordering = ['-commented_on']
 
     def __str__(self):
         return self.user_name

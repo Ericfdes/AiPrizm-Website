@@ -4,7 +4,7 @@ from .models import *
 def blog(request):
     
     context= {
-     
+       
     }
     return render(request, "blog/blog-sidebar.html", context)
 
