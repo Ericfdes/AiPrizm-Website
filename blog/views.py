@@ -23,6 +23,7 @@ def blog_detail(request, slug_url):
             obj = comment_form.save(commit=False)
             obj.blog= blog
             obj.save()
+            messages.success(request, "Your comment has been posted successfully!")
             # return JsonResponse({'user_name':obj.user_name, 'commented_on':obj.commented_on, 'user_address':obj.user_address, 'body':obj.body})
         
 
