@@ -37,12 +37,15 @@ class Blog(models.Model):
 
 class Author(models.Model):
     author_name= models.CharField(max_length=100)
-    author_desc= models.CharField(max_length=200, null=True)
+    author_desc= models.CharField(max_length=2000, null=True)
+    author_prof= models.CharField(max_length=100, null=True)
     author_pic= models.ImageField(upload_to="blog/author_pic/", null=True, blank=True)
     #Socials
-    twitter = models.CharField(max_length=200, default="#")
-    facebook = models.CharField(max_length=200, default="#")
-    instagram = models.CharField(max_length=200, default="#")
+    twitter = models.CharField(max_length=200, blank=True, null=True)
+    facebook = models.CharField(max_length=200, blank=True, null=True)
+    instagram = models.CharField(max_length=200, blank=True, null=True)
+    stack_overflow = models.CharField(max_length=200, blank=True, null=True)
+    linkedin = models.CharField(max_length=200, blank=True, null=True)
 
     def __str__(self):
         return self.author_name
@@ -54,12 +57,12 @@ class Category(models.Model):
         return self.category
 
 class Comment(models.Model):
-    user_name= models.CharField(max_length=250)
-    user_email = models.EmailField(max_length=300, blank=True)
+    user_name= models.CharField(max_length=250, help_text='Name')
+    user_email = models.EmailField(max_length=300, blank=True, help_text='E-mail')
     user_pic= ResizedImageField(size=[40, 40], upload_to="blog/user_pic/", null=True, blank=True, default='blog/default_pic.png')
-    user_address=models.CharField(max_length=50)
-    body= models.TextField(max_length=4000, null=True)
-    blog = models.ForeignKey('Blog', on_delete=models.CASCADE, related_name='blog_comments')
+    user_address=models.CharField(max_length=50, default='Unknown')
+    body= models.TextField(max_length=4000, null=True, help_text='Comment')
+    blog = models.ForeignKey('Blog', on_delete=models.CASCADE, related_name='blog_comments', null=True)
     commented_on=models.DateTimeField(auto_now_add=True)
 
     

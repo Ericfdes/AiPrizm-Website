@@ -85,12 +85,12 @@
 							<div class="blog-item-content bg-white p-5">
 								<div class="blog-item-meta bg-gray pt-2 pb-1 px-3">
 									<span class="text-muted text-capitalize mr-3"><i class="ti-pencil-alt mr-2"></i>{{Blog.category}}</span>
-									<span class="text-muted text-capitalize mr-3"><i class="ti-comment mr-2"></i>5 Comments</span>
+									<span class="text-muted text-capitalize mr-3"><i class="ti-comment mr-2"></i>{{Blog.blog_comments.count}} Comments</span>
 									<span class="text-black text-capitalize mr-3"><i class="ti-time mr-1"></i> {{Blog.created_on}}</span>
 								</div>
 
 								<h2 class="mt-3 mb-4">{{Blog.title}}</h2>
-								<p class="lead mb-4">{{Blog.content}}</p>
+								<p class="lead mb-4">{{Blog.body|safe}}</p>
 
 								<div class="tag-option mt-5 d-block d-md-flex justify-content-between align-items-center">
 									<ul class="list-inline">
@@ -144,26 +144,29 @@
 							
 								{% if not Blog.blog_comments.all %}
 								
-									<h4 class="mb-4">No Comments yet</h4>
+									<h4 class="mb-1">No Comments yet</h4>
+									<hr style="color: black;">	
+									<h5 class="mb-1 font-italic">Be the first to write a comment</h5>
 								
 								{% else %}
-								<h4 class="mb-4">
+								<h4 class="mb-1">
 									{% if Blog.blog_comments.count > 1 %}
 									{{Blog.blog_comments.count}} Comments</h4>
 									{% else %}
 									{{Blog.blog_comments.count}} Comment</h4>
-									{% endif %}
-									
+								{% endif %}
+								<hr style="color: black;">	
 								<ul class="comment-tree list-unstyled">
-								<li class="mb-5">
-
+								
+									
 									{% for comments in Blog.blog_comments.all %}
+									<li class="mb-5"></li>
 									<div class="comment-area-box">
 										
 										<img loading="lazy" alt="comment-author" src="{{comments.user_pic.url}}" class="img-fluid float-left mr-3 mt-2">
 										
-										<h5 class="mb-1">{{comments.user_name}}</h5>
-										<span>{{comments.user_address}}</span>
+										<h5 class="mb-1" id="user-name">{{comments.user_name}}</h5>
+										<span id="user-address">{{comments.user_address}}</span>
 
 										<div class="comment-meta mt-4 mt-lg-0 mt-md-0 float-lg-right float-md-right">
 											<a href="#"><i class="icofont-reply mr-2 text-muted"></i>Reply |</a>
@@ -171,9 +174,10 @@
 										</div>
 
 										<div class="comment-content mt-3">
-											<p>{{comments.body}}</p>
+											<p id="comment-body">{{comments.body}}</p>
 										</div>
 									</div>
+									<hr>
 									
 								</li>
 
@@ -187,27 +191,41 @@
 					</div>
 
 					<div class="col-lg-12">
-						<form class="contact-form bg-white rounded p-5" id="comment-form">
+						<form class="contact-form bg-white rounded p-5" id="comment-postform" method='POST' enctype='multipart/form-data'>
+							{% csrf_token %}
 							<h4 class="mb-4">Write a comment</h4>
 							<div class="row">
+								{{comment_form.non_field_errors}}
 								<div class="col-md-6">
 									<div class="form-group">
-										<input class="form-control" type="text" name="name" id="name" placeholder="Name:">
+										{{comment_form.user_name.errors}}
+										<!-- <input class="form-control" type="text" name="name" id="name" placeholder="Name:"> -->
+										{{comment_form.user_name}}
 									</div>
 								</div>
+
 								<div class="col-md-6">
 									<div class="form-group">
-										<input class="form-control" type="text" name="mail" id="mail" placeholder="Email:">
+										{{comment_form.user_email.errors}}
+										<!-- <input class="form-control" type="text" name="mail" id="mail" placeholder="Email:"> -->
+										{{comment_form.user_email}}
+									</div>
+								</div>
+
+								<div class="col-md-12">
+									<div class="form-group">
+										{{comment_form.body.errors}}
+	
+										{{comment_form.body}}
 									</div>
 								</div>
 							</div>
+							
 
+							<!-- <textarea class="form-control mb-3" name="comment" id="comment" cols="30" rows="5"
+								placeholder="Comment"></textarea> -->
 
-							<textarea class="form-control mb-3" name="comment" id="comment" cols="30" rows="5"
-								placeholder="Comment"></textarea>
-
-							<input class="btn btn-main btn-round-full" type="submit" name="submit-contact" id="submit_contact"
-								value="Submit Message">
+							<button class="btn btn-main btn-round-full" type="submit" name="submit-contact" id="submit_contact">Comment</button>
 						</form>
 					</div>
 				</div>
@@ -215,34 +233,44 @@
 			<!-- Sidebar Start -->
 			<div class="col-lg-4 mt-5 mt-lg-0">
 				<div class="sidebar-wrap">
-					<div class="sidebar-widget search card p-4 mb-3 border-0">
-						<input type="text" class="form-control" placeholder="search">
-						<a href="#" class="btn btn-mian btn-small d-block mt-2">search</a>
-					</div>
 
 					<div class="sidebar-widget card border-0 mb-3">
 						<img loading="lazy" src="{{Blog.author.author_pic.url}}" alt="blog-author" class="img-fluid">
 						<div class="card-body p-4 text-center">
 							<h5 class="mb-0 mt-4">{{Blog.author.author_name}}</h5>
-							<p>Digital Marketer</p>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Incidunt, dolore.</p>
+							<p>{{Blog.author.author_prof}}</p>
+							<p>{{Blog.author.author_desc}}</p>
 
 							<ul class="list-inline author-socials">
+								{% if Blog.author.facebook %}
 								<li class="list-inline-item mr-3">
-									<a href="{{Blog.author.facebook}"><i class="fab fa-facebook-f text-muted"></i></a>
+									<a href="{{Blog.author.facebook}}"><i class="fab fa-facebook-f "></i></a>
 								</li>
+								{% endif %}
+
+								{% if Blog.author.twitter %}
 								<li class="list-inline-item mr-3">
-									<a href="{{Blog.author.twitter}}"><i class="fab fa-twitter text-muted"></i></a>
+									<a href="{{Blog.author.twitter}}"><i class="fab fa-twitter"></i></a>
 								</li>
+								{% endif %}
+
+								{% if Blog.author.linkedin %}
 								<li class="list-inline-item mr-3">
-									<a href="#"><i class="fab fa-linkedin-in text-muted"></i></a>
+									<a href="#"><i class="fab fa-linkedin-in"></i></a>
 								</li>
+								{% endif %}
+
+								{% if Blog.author.stack_overflow %}
 								<li class="list-inline-item mr-3">
-									<a href="#"><i class="fab fa-pinterest text-muted"></i></a>
+									<a href="#"><i class="fab fa-stack-overflow"></i></a>
 								</li>
+								{% endif %}
+
+								{% if Blog.author.instagram %}
 								<li class="list-inline-item mr-3">
 									<a href="{{Blog.author.instagram}}"><i class="fa-brands fa-instagram"></i></a>
 								</li>
+								{% endif %}
 							</ul>
 						</div>
 					</div>
@@ -293,6 +321,33 @@
 		</div>
 	</div>
 </section>
+
+<script type='text/javascript'>
+	$(document).ready(function () {
+		$('#comment-postform').on('submit', function(event){
+			event.preventDefault();
+			
+			$.ajax({
+				type: 'POST',
+				url: "{% url 'blog_detail' Blog.slug %}",
+				data: $("#comment-postform").serialize(),
+				datatype: "json",
+				success: function (data) {
+					alert("Comment Submitted")
+					$('#id_user_name').val('')
+					$('#id_user_email').val('')
+					$('#id_body').val('')
+					
+				}
+				
+			})
+		});
+
+		
+
+		
+	  });
+</script>
 
 
 {% endblock content%}

@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'website',
     'blog',
+    'ckeditor',
+    'ckeditor_uploader',
     
 ]
 
@@ -130,6 +132,7 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 MEDIA_DIR = BASE_DIR / 'media'
 MEDIA_ROOT = MEDIA_DIR
 MEDIA_URL = 'media/'
+CKEDITOR_UPLOAD_PATH = 'uploads/'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Default primary key field type

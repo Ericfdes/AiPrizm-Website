@@ -3,9 +3,6 @@ from django.shortcuts import render
 from .models import *
 from blog.models import Blog
 from django.core.mail import send_mail, BadHeaderError
-
-from django.conf import settings
-from django.core.mail import send_mail, BadHeaderError
 from django.http import HttpResponse
 from .forms import ContactForm
 
@@ -68,7 +65,11 @@ def contact(request):
             return HttpResponse ("Message sent successfully",status=200)
       
     form = ContactForm()
-    return render(request, "website/contact.html", {'form':form})
+    context = {
+        'form':form,
+        'nbar': 'contact',
+    }
+    return render(request, "website/contact.html", context)
 
 def service(request):
 
@@ -105,4 +106,4 @@ def blog(request):
     context = {
         'nbar': 'blog',
     }
-    return render(request, 'website/blog-grid.html')
+    return render(request, 'website/blog-grid.html', context)

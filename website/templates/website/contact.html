@@ -154,7 +154,6 @@
         $.ajax({
             type: 'POST',
             url : "{% url 'contact' %}", // the endpoint
-            type : "POST", // http method
             data : {
               name: $('#id_name').val(),
               subject: $('#id_subject').val(),
